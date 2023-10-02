@@ -93,12 +93,21 @@ def delete_task(task_id):
     tasks.remove(task)
     return jsonify({"message": "Task deleted"})
 
+"""
 if __name__ == '__main__':
     app.run(debug=True)
-
+"""
 
 
 """
 if __name__=='__main__':
     app.run()
     """
+    
+if __name__=='__main__':
+    from waitress import serve
+    if os.getenv("EAR_PRODUCTION")  == None:
+        app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
+        app.run(host="0.0.0.0", port=5000, load_dotenv=True)
+    else:
+        serve(app, host="0.0.0.0", port=5000)
