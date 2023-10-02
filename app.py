@@ -104,10 +104,19 @@ if __name__=='__main__':
     app.run()
     """
     
+# if __name__=='__main__':
+#     from waitress import serve
+#     if os.getenv("EAR_PRODUCTION")  == None:
+#         app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
+#         app.run(host="0.0.0.0", port=5000, load_dotenv=True)
+#     else:
+#         serve(app, host="0.0.0.0", port=5000)
+
+        
 if __name__=='__main__':
-    from waitress import serve
     if os.getenv("EAR_PRODUCTION")  == None:
-        app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
-        app.run(host="0.0.0.0", port=5000, load_dotenv=True)
+        app_gunicorn.wsgi_app = ProxyFix(app_gunicorn.wsgi_app, x_proto=1, x_host=1)
+        app_gunicorn.run(host="0.0.0.0", port=5000, load_dotenv=True)
     else:
-        serve(app, host="0.0.0.0", port=5000)
+        # -w 4 ist die Anzahl der Worker
+        $ gunicorn -w 4 create_app()

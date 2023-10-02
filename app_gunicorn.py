@@ -29,7 +29,7 @@ def split_string(text):
 @app.route("/")
 def home():
 
-    return jsonify({'name': 'alice',
+    return jsonify({'name': 'aliceEEEEEE',
                     'email': 'alice@outlook.com'})
 
 @app.route('/query')
@@ -106,8 +106,8 @@ if __name__=='__main__':
     
 if __name__=='__main__':
     if os.getenv("EAR_PRODUCTION")  == None:
-        app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
-        app.run(host="0.0.0.0", port=5000, load_dotenv=True)
+        app_gunicorn.wsgi_app = ProxyFix(app_gunicorn.wsgi_app, x_proto=1, x_host=1)
+        app_gunicorn.run(host="0.0.0.0", port=5000, load_dotenv=True)
     else:
         # -w 4 ist die Anzahl der Worker
         $ gunicorn -w 4 create_app()
