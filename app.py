@@ -40,8 +40,11 @@ def sec():
     # Initialize the DataFrame with all rows
     filtered_df = df.copy()
     print(filtered_df)
-
+    
+    pd.read_csv(r"C:\Users\MariusHennekes\OneDrive - Kangoolutions\Dokumente\GitHub\Api_speed\Testdaten.csv")
+    
     # Iterate through query parameters and filter the DataFrame
+    
     print(query_params.items())
     query = filtered_df
     for key, value in query_params.items():
@@ -93,17 +96,6 @@ def delete_task(task_id):
     tasks.remove(task)
     return jsonify({"message": "Task deleted"})
 
-"""
-if __name__ == '__main__':
-    app.run(debug=True)
-"""
-
-
-"""
-if __name__=='__main__':
-    app.run()
-    """
-    
 if __name__=='__main__':
     from waitress import serve
     if os.getenv("EAR_PRODUCTION")  == None:
@@ -113,10 +105,3 @@ if __name__=='__main__':
         serve(app, host="0.0.0.0", port=5000)
 
         
-# if __name__=='__main__':
-#     if os.getenv("EAR_PRODUCTION")  == None:
-#         app_gunicorn.wsgi_app = ProxyFix(app_gunicorn.wsgi_app, x_proto=1, x_host=1)
-#         app_gunicorn.run(host="0.0.0.0", port=5000, load_dotenv=True)
-#     else:
-#         # -w 4 ist die Anzahl der Worker
-#         gunicorn -w 4 create_app()
