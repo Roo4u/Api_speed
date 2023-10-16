@@ -41,7 +41,7 @@ def sec():
     filtered_df = df.copy()
     print(filtered_df)
     
-    pd.read_csv(r"C:\Users\MariusHennekes\OneDrive - Kangoolutions\Dokumente\GitHub\Api_speed\Testdaten.csv")
+    #pd.read_csv(r"C:\Users\MariusHennekes\OneDrive - Kangoolutions\Dokumente\GitHub\Api_speed\Testdaten.csv")
     
     # Iterate through query parameters and filter the DataFrame
     
